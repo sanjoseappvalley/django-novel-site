@@ -21,8 +21,8 @@ class NewVisitorTest(unittest.TestCase):
 
         # He clicks on the first novel Martial Peak
 
-        # The page moves to Martial Peak detail page, now he sees numbers of chapters
-        # to choose from
+        # The page moves to Martial Peak detail page, now he sees numbers of
+        # chapters to choose from
 
         # he clicks on chapter 1 and the page changes to chapter 1 content page
 
