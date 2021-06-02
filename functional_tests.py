@@ -16,11 +16,15 @@ class NewVisitorTest(unittest.TestCase):
 
         # He notices the page title and header mention heaven daos
         self.assertIn('Heaven Daos', self.browser.title)
-        self.fail('Finish the test!')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Novels', header_text)
         # He sees a list of novels that he can choose to read
-
+        novels = self.browser.find_elements_by_tag_name('article')
+        self.assertTrue(
+            any(novel.text == 'Martial Peak' for novel in novels)
+        )
         # He clicks on the first novel Martial Peak
-
+        self.fail(msg='Finish the test!')
         # The page moves to Martial Peak detail page, now he sees numbers of
         # chapters to choose from
 
@@ -32,7 +36,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # the page moves to chapter 2 and he continues reading
 
-        browser.quit()
+        self.fail('Finish the test!')
 
 
 if __name__ == "__main__":
