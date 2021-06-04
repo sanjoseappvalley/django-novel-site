@@ -1,5 +1,6 @@
 import unittest
 from selenium import webdriver
+import time
 
 
 class NewVisitorTest(unittest.TestCase):
@@ -15,9 +16,9 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         # He notices the page title and header mention heaven daos
-        self.assertIn('Heaven Daos', self.browser.title)
+        self.assertIn('Immortal Mansion', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Heaven Daos', header_text)
+        self.assertIn('Immortal Mansion', header_text)
         # He sees a list of novels that he can choose to read
         novels = self.browser.find_elements_by_tag_name('article')
         self.assertTrue(
@@ -25,7 +26,9 @@ class NewVisitorTest(unittest.TestCase):
             "There is no novel with such name"
         )
         # He clicks on the first novel Martial Peak
-        self.fail(msg='Finish the test!')
+        self.browser.find_element_by_link_text("Chusen").click()
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Chusen")
         # The page moves to Martial Peak detail page, now he sees numbers of
         # chapters to choose from
 
@@ -34,7 +37,7 @@ class NewVisitorTest(unittest.TestCase):
         # He sees chapter 1 content and starts reading
 
         # finishing chapter 1 he sees the next button, he clicks on it
-
+        self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading
 
 
