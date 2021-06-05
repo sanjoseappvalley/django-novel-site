@@ -21,15 +21,15 @@
       <h1>Immortal Mansion Library</h1>
       <p>&nbsp;</p>
       <h3>Cultivation techniques for dao practitioners</h3>
-      <ul>
-        <article><a style="color: #6a5acd;" href="chusen.com">Chusen</a></article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Apotheosis</a></article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Martial Peak</a></article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Tales of Demons and Gods</a></article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Star Martial God</a></article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Heaven Defying</a> (new)</article>
-        <article><a style="color: #6a5acd;" href="chusen.com">Great Demon God</a> (new)</article>
-      </ul>
+      {% if current_novel_list %}
+        <ul>
+          {% for novel in current_novel_list %}
+            <li><a href="/{{ novel.novel_name }}/">{{ novel.novel_name }}</a></li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No novels are available. Please check back later.</p>
+      {% endif %}
     </div>
   </body>
 </html>

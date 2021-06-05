@@ -25,7 +25,7 @@ class NewVisitorTest(unittest.TestCase):
             any(novel.text == 'Chusen' for novel in novels),
             "There is no novel with such name"
         )
-        # He clicks on the first novel Martial Peak
+        # He clicks on the first novel
         self.browser.find_element_by_link_text("Chusen").click()
         time.sleep(2)
         self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Chusen")
