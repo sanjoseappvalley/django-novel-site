@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Immortal Mansion - Cultivation Light Novels</title>
+    <title>{{ novel_name }}</title>
     <meta name="description" content="The best and most exciting cultivation martial art light novels.">
     <meta name="keywords" content="cultivation,light novels,novels,martial art,daos,3000daos,realm,tales,demon,demons,god,gods,monster,monsters,dragon,emperor,human,humans">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,17 +18,16 @@
   </head>
   <body>
     <div class="container p-3 my-3 border">
-      <h1>Immortal Mansion</h1>
+      <h1>{{ novel_name }}</h1>
       <p>&nbsp;</p>
-      <h3>Cultivation techniques for dao practitioners</h3>
-      {% if current_novel_list %}
+      {% if novel_chapter_list %}
         <ul>
-          {% for novel in current_novel_list %}
-            <li><a href="/{{ novel.novel_name }}/">{{ novel.novel_name }}</a></li>
+          {% for chapter in novel_chapter_list %}
+            <li><a href="/{{ novel_name }}/{{ chapter.chapter_number }}">{{ chapter.chapter_number }}</a></li>
           {% endfor %}
         </ul>
       {% else %}
-        <p>No novels are available. Please check back later.</p>
+        <p>This novel is being translated.</p>
       {% endif %}
     </div>
   </body>
