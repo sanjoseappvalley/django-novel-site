@@ -1,9 +1,9 @@
-import unittest
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 import time
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -20,26 +20,29 @@ class NewVisitorTest(unittest.TestCase):
         header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('Immortal Mansion', header_text)
         # He sees a list of novels that he can choose to read
-        novels = self.browser.find_elements_by_tag_name('article')
+        novels = self.browser.find_elements_by_tag_name('li')
         self.assertTrue(
-            any(novel.text == 'Chusen' for novel in novels),
-            "There is no novel with such name"
+            any(novel.text == 'Legend of Chusen' for novel in novels),
+            "There is no novel with such name!"
         )
         # He clicks on the first novel
-        self.browser.find_element_by_link_text("Chusen").click()
+        self.browser.find_element_by_link_text("Legend of Chusen").click()
         time.sleep(2)
-        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Chusen")
-        # The page moves to Martial Peak detail page, now he sees numbers of
-        # chapters to choose from
-
+        # The page moves to the novel page, and he sees the title and a list of chapters
+        novel_name = self.browser.find_element_by_tag_name('h1').text
+        self.assertEqual(novel_name, "Legend of Chusen")
+        # first_novel_url = self.browser.current_url
+        # self.assertContains(first_novel_url, novel_name)
+        chapters = self.browser.find_element_by_tag_name('li')
+        self.assertTrue(
+            any(chapter.text == 'Chapter 1: Zhang Xiao Fan' for chapter in chapters),
+            "Chapter name doesn't match!"
+        )
         # he clicks on chapter 1 and the page changes to chapter 1 content page
-
+        self.browser.find_element_by_partial_link_text("Chapter 1:").click()
+        time.sleep(2)
         # He sees chapter 1 content and starts reading
-
+        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Zhang Xiao Fan")
         # finishing chapter 1 he sees the next button, he clicks on it
         self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading
-
-
-if __name__ == "__main__":
-    unittest.main()

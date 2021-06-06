@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ novel_name }}</title>
+    <title>{{ novel.novel_name }}</title>
     <meta name="description" content="The best and most exciting cultivation martial art light novels.">
     <meta name="keywords" content="cultivation,light novels,novels,martial art,daos,3000daos,realm,tales,demon,demons,god,gods,monster,monsters,dragon,emperor,human,humans">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="container p-3 my-3 border">
-      <h1>{{ novel_name }}</h1>
+      <h1>{{ novel.novel_name }}</h1>
       <p>&nbsp;</p>
       {% if novel_chapter_list %}
         <ul>
