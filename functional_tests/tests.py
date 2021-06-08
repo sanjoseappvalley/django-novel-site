@@ -41,7 +41,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.assertEqual(novel_name, "Legend of Chusen")
         first_novel_url = self.browser.current_url
         # the url has the novel name with - at the end
-        self.assertIn("Legend-of-Chusen", first_novel_url)
+        self.assertIn("legend-of-chusen", first_novel_url)
         chapters = self.browser.find_elements_by_tag_name('li')
         self.assertTrue(
             any(chapter.text == 'Chapter 1: Zhang Xiao Fan' for chapter in chapters),

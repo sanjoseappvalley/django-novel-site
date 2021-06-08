@@ -30,6 +30,6 @@ class NovelModelTest(TestCase):
         self.assertEqual(fno.novel_name, "FNO")
         self.assertEqual(sno.novel_name, "SNO")
 
-    # def test_get_absolute_url(self):
-    #     novel = create_novel("testnovel", 0)
-    #     self.assertEqual(novel.get_absolute_url(), f'/{novel.novel_name}/')
+    def test_get_absolute_url(self):
+        novel = create_novel("test novel", 0)
+        self.assertEqual(novel.get_absolute_url(), f'/test-novel/')

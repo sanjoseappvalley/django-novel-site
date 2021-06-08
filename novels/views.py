@@ -9,6 +9,6 @@ def home_page(request):
     return render(request, 'home.html', context)
 
 
-def novel_page(request, novel_name):
-    novel = get_object_or_404(Novel, novel_name=novel_name)
+def novel_page(request, slug):
+    novel = get_object_or_404(Novel, slug=slug)
     return render(request, 'novel.html', {'novel': novel})
