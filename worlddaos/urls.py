@@ -19,6 +19,6 @@ from novels import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', views.home_page, name='home'),
-    path(r'', include('novels.urls')),
+    path('', views.home_page, name='home'),
+    path('', include('novels.urls')),
 ]
