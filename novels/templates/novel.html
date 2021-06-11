@@ -20,10 +20,10 @@
     <div class="container p-3 my-3 border">
       <h1>{{ novel.novel_name }}</h1>
       <p>&nbsp;</p>
-      {% if novel_chapter_list %}
+      {% if novel %}
         <ul>
-          {% for chapter in novel_chapter_list %}
-            <li><a href="/{{ novel_name }}/{{ chapter.chapter_number }}">{{ chapter.chapter_number }}</a></li>
+          {% for chapter in novel.chapter_set.all %}
+            <li><a href="/{{ novel.slug }}/{{ chapter.chapter_name }}">{{ chapter.chapter_name }}</a></li>
           {% endfor %}
         </ul>
       {% else %}
