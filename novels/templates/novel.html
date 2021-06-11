@@ -22,7 +22,11 @@
       <p>&nbsp;</p>
       {% if novel %}
         <ul>
+<<<<<<< HEAD
           {% for chapter in novel_chapter_list %}
+=======
+          {% for chapter in novel.chapter_set.all %}
+>>>>>>> 644e7c101ad2f4e0f284d237604b252db2af54ee
             <li><a href="/{{ novel.slug }}/{{ chapter.chapter_name }}">{{ chapter.chapter_name }}</a></li>
           {% endfor %}
         </ul>
