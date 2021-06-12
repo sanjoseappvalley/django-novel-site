@@ -39,6 +39,7 @@ class NovelModelTest(TestCase):
         fno = create_novel('Gods of war', 0)
         chapter = fno.chapter_set.create(chapter_name='chapter1st')
         self.assertEqual(fno, chapter.novel)
+        self.assertEqual(fno.chapter_set.first().chapter_name, 'chapter1st')
 
 
 class ChapterModelTest(TestCase):
