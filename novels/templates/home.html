@@ -24,11 +24,7 @@
       {% if current_novel_list %}
         <ul>
           {% for novel in current_novel_list %}
-<<<<<<< HEAD
-            <li><a href="/{{ novel.slug }}/">{{ novel.novel_name }}</a></li>
-=======
             <li><a href="/{{ novel.slug }}">{{ novel.novel_name }}</a></li>
->>>>>>> 644e7c101ad2f4e0f284d237604b252db2af54ee
           {% endfor %}
         </ul>
       {% else %}

@@ -1,20 +1,12 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-<<<<<<< HEAD
-
-
-class Novel(models.Model):
-    novel_name = models.CharField(max_length=255)
-    release_date = models.DateTimeField('date released')
-=======
 from django.utils import timezone
 
 
 class Novel(models.Model):
     novel_name = models.CharField(max_length=255, default='')
     release_date = models.DateTimeField('date released', default=timezone.now())
->>>>>>> 644e7c101ad2f4e0f284d237604b252db2af54ee
     slug = models.SlugField(max_length=255)
 
     def __str__(self):
@@ -27,8 +19,7 @@ class Novel(models.Model):
 
     def get_absolute_url(self):
         return reverse('novel_page', args=[self.slug])
-<<<<<<< HEAD
-=======
+
 
 
 class Chapter(models.Model):
@@ -41,4 +32,3 @@ class Chapter(models.Model):
     class Meta:
         ordering = ('id',)
         unique_together = ('novel', 'chapter_name')
->>>>>>> 644e7c101ad2f4e0f284d237604b252db2af54ee

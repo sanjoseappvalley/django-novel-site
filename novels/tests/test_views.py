@@ -34,7 +34,7 @@ class NovelViewTest(TestCase):
 
     def test_displays_all_chapters(self):
         fno = create_novel("fno", 0)
-        response = self.client.get(f'/{fno.novel_name}/')
+        response = self.client.get(f'/{fno.slug}/')
         self.assertEqual(response.status_code, 200)
 
     # def test_use_novel_template(self):
