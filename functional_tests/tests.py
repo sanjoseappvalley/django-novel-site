@@ -9,11 +9,11 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
-        self.fno = Novel(novel_name="Legend of Chusen", release_date=timezone.now())
+        self.fno = Novel(novel_name="Legend of Chusen")
         self.fno.save()
         self.fno.chapter_set.create(chapter_name='Chapter 1: Qing Yun')
         self.fno.chapter_set.create(chapter_name='Chapter 2: Confuse')
-        self.sno = Novel(novel_name="Great Demon God", release_date=timezone.now())
+        self.sno = Novel(novel_name="Great Demon God")
         self.sno.save()
 
     def tearDown(self):
@@ -37,7 +37,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Legend of Chusen', [novel.text for novel in novels])
         # He clicks on the first novel
         self.browser.find_element_by_link_text("Legend of Chusen").click()
-        time.sleep(6)
+        time.sleep(2)
         # The page moves to the novel page, and he sees the title and a list of chapters
         novel_name = self.browser.find_element_by_tag_name('h1').text
         self.assertEqual(novel_name, "Legend of Chusen")

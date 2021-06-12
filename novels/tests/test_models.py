@@ -5,9 +5,8 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 
-def create_novel(novel_name, days):
-    time = timezone.now() + datetime.timedelta(days)
-    return Novel.objects.create(novel_name=novel_name, release_date=time)
+def create_novel(novel_name):
+    return Novel.objects.create(novel_name=novel_name)
 
 
 class NovelModelTest(TestCase):
@@ -32,11 +31,11 @@ class NovelModelTest(TestCase):
         self.assertEqual(sno.novel_name, "SNO")
 
     def test_get_absolute_url(self):
-        novel = create_novel("test novel", 0)
+        novel = create_novel("test novel")
         self.assertEqual(novel.get_absolute_url(), f'/test-novel/')
 
     def test_create_novel_and_first_chapter(self):
-        fno = create_novel('Gods of war', 0)
+        fno = create_novel('Gods of war')
         chapter = fno.chapter_set.create(chapter_name='chapter1st')
         self.assertEqual(fno, chapter.novel)
         self.assertEqual(fno.chapter_set.first().chapter_name, 'chapter1st')

@@ -4,9 +4,8 @@ import datetime
 from django.utils import timezone
 
 
-def create_novel(novel_name, days):
-    time = timezone.now() + datetime.timedelta(days)
-    return Novel.objects.create(novel_name=novel_name, release_date=time)
+def create_novel(novel_name):
+    return Novel.objects.create(novel_name=novel_name)
 
 
 class HomePageTest(TestCase):
@@ -16,7 +15,7 @@ class HomePageTest(TestCase):
         self.assertTemplateUsed(response, 'home.html')
 
     def test_current_novels(self):
-        novel = create_novel("Heaven Daos", 0)
+        novel = create_novel("Heaven Daos")
         response = self.client.get('/')
         self.assertQuerysetEqual(
             response.context['current_novel_list'],
@@ -33,7 +32,7 @@ class HomePageTest(TestCase):
 class NovelViewTest(TestCase):
 
     def test_displays_all_chapters(self):
-        fno = create_novel("fno", 0)
+        fno = create_novel("fno")
         fchapter = Chapter(novel=fno, chapter_name='first_ch')
         schapter = Chapter(novel=fno, chapter_name='second_ch')
         fchapter.save()
@@ -43,13 +42,13 @@ class NovelViewTest(TestCase):
         self.assertContains(response, schapter.chapter_name)
 
     def test_use_novel_template(self):
-        novel = create_novel("Demon", 0)
+        novel = create_novel("Demon")
         response = self.client.get(f'/{novel.slug}/')
         self.assertTemplateUsed(response, 'novel.html')
 
     def test_display_chapters_for_only_that_novel(self):
-        fno = create_novel('love story', 0)
-        sno = create_novel('bad story', 0)
+        fno = create_novel('love story')
+        sno = create_novel('bad story')
         fno.chapter_set.create(chapter_name='fnoChap')
         sno.chapter_set.create(chapter_name='snoChap')
         response = self.client.get(f'/{fno.slug}/')

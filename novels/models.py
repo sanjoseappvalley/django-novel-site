@@ -1,12 +1,12 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from django.utils import timezone
+# from django.utils import timezone
 
 
 class Novel(models.Model):
     novel_name = models.CharField(max_length=255, default='')
-    release_date = models.DateTimeField('date released', default=timezone.now())
+    # release_date = models.DateTimeField('date released', default=timezone.now())
     slug = models.SlugField(max_length=255)
 
     def __str__(self):
