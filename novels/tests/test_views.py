@@ -1,5 +1,5 @@
 from django.test import TestCase
-from novels.models import Novel, Chapter
+from novels.models import Novel, Chapter, Story
 import datetime
 from django.utils import timezone
 
@@ -54,3 +54,16 @@ class NovelViewTest(TestCase):
         response = self.client.get(f'/{fno.slug}/')
         self.assertContains(response, 'fnoChap')
         self.assertNotContains(response, 'snoChap')
+
+class ChapterViewTest(TestCase):
+
+    def test_access_to_chapter(self):
+        aNovel = create_novel('Martial Peak')
+        aNovel_chapter = Chapter.objects.create(novel=aNovel, chapter_name='Yang Kai')
+        content = Story()
+        content.chapter = aNovel_chapter
+        content.title = aNovel_chapter.chapter_name
+        content.text = 'few paragraphs and spaces between'
+        content.save()
+        response = self.client.get(f'/{aNovel.slug}/{aNovel_chapter.slug}/')
+        self.assertEqual(response.status_code, 200)
