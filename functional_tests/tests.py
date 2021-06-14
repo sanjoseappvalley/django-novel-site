@@ -55,5 +55,6 @@ class NewVisitorTest(LiveServerTestCase):
         # He sees chapter 1 content and starts reading
         self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Qing Yun")
         # finishing chapter 1 he sees the next button, he clicks on it
+        time.sleep(5)
         self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading
