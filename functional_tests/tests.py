@@ -53,8 +53,10 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.find_element_by_partial_link_text("Chapter 1:").click()
         time.sleep(2)
         # He sees chapter 1 content and starts reading
-        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Qing Yun")
+        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, "Chapter 1: Qing Yun")
         # finishing chapter 1 he sees the next button, he clicks on it
-        time.sleep(5)
+        self.browser.find_element_by_link_text("Next Chapter").click()
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_tag_name('h1').text, 'Chapter 2: Confuse')
         self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading

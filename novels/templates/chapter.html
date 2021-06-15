@@ -20,38 +20,22 @@
     <div class="container p-3 my-3 border">
       <article class="chapter-content">
         <header class="entry-header">
-          <a href="/{{novel.slug}}">novel.chapter_name</a>
+          <a href="/{{novel.slug}}">{{ novel.novel_name }}</a>
           <h1>{{ chapter.chapter_name }}</h1>
         </header>
-        <div class="entry-content">
-          <p style='text=align: center;'>
-            <a href="/{{chapter.next}}">Next Chapter</a>
-          </p>
-          <p>&nbsp;</p>
-          <p>
-            Under heaven all living things are equal in Gods' eyes, regardless of who, the Gods don't concern themselves in the matters of life and death of the mortal.
-            Gods never show themselves as if they never exist. No one knows if there is any God watching them.
-
-            Since ancient times, things have always been decided based on strength and status. The humans struggle among themselves, fighting and killing, for their own benefits.
-            The strong live with pride and wealth, sometimes arrogant, sometimes honorable, sometimes.. just cruel. Their status is naturally high, giving benefits and great influences
-            to those who follow them. Meanwhile, the weak has to live with their head down, always bow and speak carefully, suppress all anger no matter how they feel, they don't
-            want to lose their life. They have to wait till they can stand with their head high, speak frankly and fearlessly. Such times only come when their cultivation is on top tier,
-            which isn't easy thing to do. One might be stuck at lower realm till their life span runs out and die. Living the weak life isn't easy, unless you take shelter under a top force
-            in the area. Joining a force and become its disciple to enjoy the protection as well as its resources if given. Thus, most man and young boys look to join a force as soon as
-            becoming teenager. Very few has ever become strong and survive walking the lone path.
-          </p>
-          <p>&nbsp;</p>
-          <p>
-            In a small village in the southwest, a young boy around 15 is looking at a list of factions he can possibly join. The boy with bright face and high forehead, giving off a feel of
-            a bright future he will have. The boy's name is Tian Long. In a tavern, Tian Long is reading a bamboo book records of those factions around his village, some are close and some will take couple
-            days to reach. He just borrowed the bamboo book from the tavern's boss who is a friendly old man. Besides serving great tea, wine and food. This tavern also provides whatever information
-            that they have. The old man looks friendly and harmless, staring at Tian Long and smiling. The old man walks up to Tian Long with great interest, looking like he's going to give the boy some
-            advice, "Tian Long boy, are you looking to join a school now?".
-            Tian Long looks up to him and says "Yes old Chong, I'm ready. I want to quickly learn martial art, I don't want to remain weak for another day. I need to become strong quickly and stand high
-            in this world!"
-            Old Chong just looks at the boy and continues smiling, then says "That's a good spirit to have. Now what kind of martial art do you want to learn?"
-          </p>
-        </div>
+        <p style='text=align: center;'>
+          <a href="/{{chapter.next}}">Next Chapter</a>
+        </p>
+        {% for story in chapter.story_set.all %}
+          <div class="entry-content">
+            <p>&nbsp;</p>
+            <p>{{ story.text }}</p>
+            <p>&nbsp;</p>
+          </div>
+        {% endfor %}
+        <p style='text=align: center;'>
+          <a href="/{{chapter.next}}">Next Chapter</a>
+        </p>
       </article>
     </div>
   </body>

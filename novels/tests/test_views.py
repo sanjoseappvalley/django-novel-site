@@ -67,3 +67,28 @@ class ChapterViewTest(TestCase):
         content.save()
         response = self.client.get(f'/{aNovel.slug}/{aNovel_chapter.slug}/')
         self.assertEqual(response.status_code, 200)
+
+    def test_use_chapter_template(self):
+        aNovel = create_novel('GDG')
+        chapter = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
+        response = self.client.get(f'/{aNovel.slug}/{chapter.slug}/')
+        self.assertTemplateUsed(response, 'chapter.html')
+
+
+    def test_displays_default_content(self):
+        aNovel = create_novel('GDG')
+        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
+        chapter1.story_set.create(title=chapter1.chapter_name)
+        response = self.client.get(f'/{aNovel.slug}/{chapter1.slug}/')
+        self.assertContains(response, 'chapter story')
+
+    def test_displays_written_content(self):
+        aNovel = create_novel('GDG')
+        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
+        chapter1.story_set.create(title='p1', text='Great Demon God')
+        chapter1.story_set.create(title='p2', text='Mo Sheng is.')
+        chapter1.story_set.create(title='p3', text='Golden left eye')
+        response = self.client.get(f'/{aNovel.slug}/{chapter1.slug}/')
+        self.assertContains(response, 'Great Demon God')
+        self.assertContains(response, 'Mo Sheng is.')
+        self.assertContains(response, 'Golden left eye')
