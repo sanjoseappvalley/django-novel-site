@@ -3,15 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ chapter.chapter_name }}</title>
     <meta name="description" content="The best and most exciting cultivation martial art light novels.">
     <meta name="keywords" content="cultivation,light novels,novels,martial art,daos,3000daos,realm,tales,demon,demons,god,gods,monster,monsters,dragon,emperor,human,humans">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{{ chapter.chapter_name }}</title>
     <style>
       h1 {
+        text-align: center;
+      }
+      h4 {
         text-align: center;
       }
     </style>
@@ -20,23 +24,30 @@
     <div class="container p-3 my-3 border">
       <article class="chapter-content">
         <header class="entry-header">
-          <a href="/{{novel.slug}}">{{ novel.novel_name }}</a>
+          <h4><a href="/{{ novel.slug }}">{{ novel.novel_name }}</a></h4>
           <h1>{{ chapter.chapter_name }}</h1>
         </header>
-        <p style='text=align: center;'>
-          <a href="/{{chapter.next}}">Next Chapter</a>
-        </p>
-        {% for story in chapter.story_set.all %}
-          <div class="entry-content">
-            <p>&nbsp;</p>
-            <p>{{ story.text }}</p>
-            <p>&nbsp;</p>
+        <div class="entry-content">
+            {% for story in chapter.story_set.all %}
+                <p>&nbsp;</p>
+                <p>{{ story.text }}</p>
+                <p>&nbsp;</p>
+            {% endfor %}
+        </div>
+        <div class="row">
+          <div class="col">
+            {% if prevchap %}
+              <a class="btn btn-primary" href="{% url 'chapter_page' novel.slug prevchap.slug %}" role="button">Previous Chapter</a>
+            {% endif %}
           </div>
-        {% endfor %}
-        <p style='text=align: center;'>
-          <a href="/{{chapter.next}}">Next Chapter</a>
-        </p>
+          <div class="col col-lg-2">
+            {% if nextchap %}
+              <a class="btn btn-primary" href="{% url 'chapter_page' novel.slug nextchap.slug %}" role="button">Next Chapter</a>
+            {% endif %}
+          </div>
+        </div>
       </article>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   </body>
 </html>
