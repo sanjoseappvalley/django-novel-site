@@ -1,5 +1,5 @@
 from django.test import TestCase
-from novels.models import Novel, Chapter, Story
+from novels.models import Novel, Chapter
 import datetime
 from django.utils import timezone
 
@@ -60,11 +60,6 @@ class ChapterViewTest(TestCase):
     def test_access_to_chapter(self):
         aNovel = create_novel('Martial Peak')
         aNovel_chapter = Chapter.objects.create(novel=aNovel, chapter_name='Yang Kai')
-        content = Story()
-        content.chapter = aNovel_chapter
-        content.title = aNovel_chapter.chapter_name
-        content.text = 'few paragraphs and spaces between'
-        content.save()
         response = self.client.get(f'/{aNovel.slug}/{aNovel_chapter.slug}/')
         self.assertEqual(response.status_code, 200)
 
@@ -74,20 +69,16 @@ class ChapterViewTest(TestCase):
         response = self.client.get(f'/{aNovel.slug}/{chapter.slug}/')
         self.assertTemplateUsed(response, 'chapter.html')
 
-
     def test_displays_default_content(self):
         aNovel = create_novel('GDG')
-        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
-        chapter1.story_set.create(title=chapter1.chapter_name)
+        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng', content='chapter story')
         response = self.client.get(f'/{aNovel.slug}/{chapter1.slug}/')
         self.assertContains(response, 'chapter story')
 
     def test_displays_written_content(self):
         aNovel = create_novel('GDG')
-        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
-        chapter1.story_set.create(title='p1', text='Great Demon God')
-        chapter1.story_set.create(title='p2', text='Mo Sheng is.')
-        chapter1.story_set.create(title='p3', text='Golden left eye')
+        chapter1 = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng',
+                    content='Great Demon God Mo Sheng is. He has a Golden left eye.')
         response = self.client.get(f'/{aNovel.slug}/{chapter1.slug}/')
         self.assertContains(response, 'Great Demon God')
         self.assertContains(response, 'Mo Sheng is.')

@@ -12,8 +12,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.fno = Novel(novel_name="Legend of Chusen")
         self.fno.save()
         self.fno.chapter_set.create(chapter_name='Chapter 1: Qing Yun')
-        self.c2 = self.fno.chapter_set.create(chapter_name='Chapter 2: Confuse')
-        self.c2.story_set.create(title='p1', text='chapter 2 story line')
+        self.c2 = self.fno.chapter_set.create(chapter_name='Chapter 2: Confuse', content='chapter 2 story line')
         self.sno = Novel(novel_name="Great Demon God")
         self.sno.save()
 

@@ -22,6 +22,7 @@ class Novel(models.Model):
 class Chapter(models.Model):
     chapter_name = models.CharField(max_length=255, default='')
     novel = models.ForeignKey(Novel, on_delete=models.CASCADE)
+    content = models.TextField(default='')
     slug = models.SlugField(max_length=255, default=None)
 
     def __str__(self):
@@ -40,13 +41,13 @@ class Chapter(models.Model):
         unique_together = ('novel', 'chapter_name')
 
 
-class Story(models.Model):
-    title = models.CharField(max_length=255, default='')
-    text = models.TextField(default='chapter story')
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        unique_together = ('title', 'chapter')
+# class Story(models.Model):
+#     title = models.CharField(max_length=255, default='')
+#     text = models.TextField(default='chapter story')
+#     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.title
+#
+#     class Meta:
+#         unique_together = ('title', 'chapter')

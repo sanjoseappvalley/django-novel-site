@@ -34,9 +34,7 @@
         </header>
         <div class="entry-content">
             <p>&nbsp;</p>
-            {% for story in chapter.story_set.all %}
-                <p>{{ story.text }}</p>
-            {% endfor %}
+            {{ chapter.content|linebreaks }}
         </div>
         <p>&nbsp;</p>
         <div class="row">
