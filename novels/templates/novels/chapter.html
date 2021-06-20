@@ -1,0 +1,30 @@
+{% extends "novels/base.html" %}
+{% block head %}
+    <title>{{ novel.novel_name }} - {{  chapter.chapter_name }}</title>
+{% endblock head %}
+
+{% block content %}
+    <article class="chapter-content">
+      <header class="entry-header">
+        <h4><a href="/{{ novel.slug }}" class="text-decoration-none">{{ novel.novel_name }}</a></h4>
+        <h1>{{ chapter.chapter_name }}</h1>
+      </header>
+      <div class="entry-content">
+          <p>&nbsp;</p>
+          {{ chapter.content|linebreaks }}
+      </div>
+      <p>&nbsp;</p>
+      <div class="row">
+        <div class="col">
+          {% if prevchap %}
+            <a href="{% url 'chapter_page' novel.slug prevchap.slug %}">Previous Chapter</a>
+          {% endif %}
+        </div>
+        <div class="col col-lg-2">
+          {% if nextchap %}
+            <a href="{% url 'chapter_page' novel.slug nextchap.slug %}">Next Chapter</a>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+{% endblock content %}

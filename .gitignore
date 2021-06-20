@@ -4,3 +4,4 @@ virtualenv
 geckodriver.exe
 __pycache__
 *.pyc
+.bashrc

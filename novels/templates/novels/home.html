@@ -1,0 +1,20 @@
+{% extends "novels/base.html" %}
+{% block head %}
+  <title>Immortal Mansion - Cultivation Light Novels</title>
+{% endblock head %}
+
+{% block content %}
+    <h1>Immortal Mansion</h1>
+    <p>&nbsp;</p>
+    <h3>Cultivation Daos</h3>
+    <br>
+    {% if current_novel_list %}
+      <ul>
+        {% for novel in current_novel_list %}
+          <li><a href="/{{ novel.slug }}" class="text-decoration-none">{{ novel.novel_name }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No novels are available. Please check back later.</p>
+    {% endif %}
+{% endblock content %}
