@@ -60,6 +60,18 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertEqual(self.browser.find_element_by_tag_name('h1').text, 'Chapter 2: Confuse')
         # he's reading chapter 2
         self.assertIn(self.browser.find_element_by_tag_name('p').text, 'chapter 2 story line')
-        # continues
+        # After reading chapter 2, Nick realizes that he wants to comment on the story, so he Register
+        # for an account
+        self.browser.find_element_by_link_text('Register').click()
+        time.sleep(2)
+        self.browser.find_element_by_id('id_username').send_keys('bbb')
+        self.browser.find_element_by_id('id_email').send_keys('bbb@gmail.com')
+        self.browser.find_element_by_id('id_password1').send_keys('bbbb1234')
+        self.browser.find_element_by_id('id_password2').send_keys('bbbb1234')
+        self.browser.find_element_by_name('button').click()
+        time.sleep(2)
+        self.assertEqual(self.browser.find_element_by_class_name('alert').text, "Account created for bbb!")
+        # continue
+        
         self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading

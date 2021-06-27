@@ -20,10 +20,17 @@
             <span><a href="/" class="text-decoration-none">Home</a></span>
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">About</a></span>
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">Donations</a></span>
-            <span style="padding-left:4px"><a href="/register/" class="text-decoration-none">Register</a></span>
+            <span style="padding-left:4px"><a href="/register" class="text-decoration-none">Register</a></span>
           </span>
         </div>
       </nav>
+      {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+      {% endif %}
       {% block content %}{% endblock %}
     </div>
     <!-- jQuery first, then Popper.js, then Boostrap JS -->

@@ -12,7 +12,7 @@ class HomePageTest(TestCase):
 
     def test_uses_home_template(self):
         response = self.client.get('/')
-        self.assertTemplateUsed(response, 'home.html')
+        self.assertTemplateUsed(response, 'novels/home.html')
 
     def test_current_novels(self):
         novel = create_novel("Heaven Daos")
@@ -44,7 +44,7 @@ class NovelViewTest(TestCase):
     def test_use_novel_template(self):
         novel = create_novel("Demon")
         response = self.client.get(f'/{novel.slug}/')
-        self.assertTemplateUsed(response, 'novel.html')
+        self.assertTemplateUsed(response, 'novels/novel.html')
 
     def test_display_chapters_for_only_that_novel(self):
         fno = create_novel('love story')
@@ -67,7 +67,7 @@ class ChapterViewTest(TestCase):
         aNovel = create_novel('GDG')
         chapter = Chapter.objects.create(novel=aNovel, chapter_name='Mo Sheng')
         response = self.client.get(f'/{aNovel.slug}/{chapter.slug}/')
-        self.assertTemplateUsed(response, 'chapter.html')
+        self.assertTemplateUsed(response, 'novels/chapter.html')
 
     def test_displays_default_content(self):
         aNovel = create_novel('GDG')
