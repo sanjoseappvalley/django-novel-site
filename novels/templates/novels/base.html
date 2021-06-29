@@ -21,6 +21,11 @@
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">About</a></span>
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">Donations</a></span>
             <span style="padding-left:4px"><a href="/register" class="text-decoration-none">Register</a></span>
+            {% if user.is_authenticated %}
+              <span style="padding-left:4px"><a href="#" class="text-decoration-none">Logout</a></span>
+            {% else %}
+              <span style="padding-left:4px"><a href="/login" class="text-decoration-none">Login</a></span>
+            {% endif %}
           </span>
         </div>
       </nav>

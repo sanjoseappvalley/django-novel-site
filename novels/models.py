@@ -36,6 +36,7 @@ class Chapter(models.Model):
     def get_absolute_url(self):
         return reverse('chapter_page', args=[self.novel.slug, self.slug])
 
+    @property
     def number_of_comments(self):
         return Comment.objects.filter(chapter=self).count()
 
@@ -56,5 +57,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment {self.body} by {self.user}'
-
-    # need to run migrations and migrate next

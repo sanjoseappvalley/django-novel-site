@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name='home'),
     path('register/', user_views.register, name='register'),
+    path('login/', user_views.login, name='login'),
     path('', include('novels.urls')),
 ]

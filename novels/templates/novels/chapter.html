@@ -44,6 +44,8 @@
       {% endif %}
       <br>
       {% if comments %}
+      <strong class="text-secondary">{{ chapter.number_of_comments }} Comments</strong>
+      <hr>
         {% for comment in comments %}
           <div class="comments" style="padding: 10px;">
             <span>

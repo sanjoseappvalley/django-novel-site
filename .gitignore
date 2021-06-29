@@ -5,3 +5,4 @@ geckodriver.exe
 __pycache__
 *.pyc
 .bashrc
+datadump.json
