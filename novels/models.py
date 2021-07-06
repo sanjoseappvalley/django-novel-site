@@ -1,7 +1,12 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.conf import settings
+
+def get_sentinel_user():
+    return get_user_model().objects.get_or_create(username='deleted')[0]
 
 class Novel(models.Model):
     novel_name = models.CharField(max_length=255, default='')
@@ -17,6 +22,9 @@ class Novel(models.Model):
 
     def get_absolute_url(self):
         return reverse('novel_page', args=[self.slug])
+
+    class Meta:
+        ordering = ('id',)
 
 
 class Chapter(models.Model):
@@ -47,7 +55,7 @@ class Chapter(models.Model):
 
 class Comment(models.Model):
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(get_sentinel_user))
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)

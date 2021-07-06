@@ -20,10 +20,10 @@
             <span><a href="/" class="text-decoration-none">Home</a></span>
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">About</a></span>
             <span style="padding-left:4px"><a href="/" class="text-decoration-none">Donations</a></span>
-            <span style="padding-left:4px"><a href="/register" class="text-decoration-none">Register</a></span>
             {% if user.is_authenticated %}
-              <span style="padding-left:4px"><a href="#" class="text-decoration-none">Logout</a></span>
+              <span style="padding-left:4px"><a href="/logout" class="text-decoration-none">Logout ({{ user.username }})</a></span>
             {% else %}
+              <span style="padding-left:4px"><a href="/register" class="text-decoration-none">Register</a></span>
               <span style="padding-left:4px"><a href="/login" class="text-decoration-none">Login</a></span>
             {% endif %}
             <span class="switch" style="float:right";>Dark mode:

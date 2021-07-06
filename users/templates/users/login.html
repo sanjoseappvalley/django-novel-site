@@ -1,7 +1,7 @@
 {% extends "novels/base.html" %}
 {% load crispy_forms_tags %}
 {% block head %}
-  <title>Immortal Mansion - Register</title>
+  <title>Immortal Mansion - Login</title>
 {% endblock head %}
 
 {% block content %}
@@ -13,11 +13,11 @@
             {{ form|crispy }}
           </fieldset>
           <div class="form-group">
-            <button class="btn btn-outline-info" type="submit" name="button">Register</button>
+            <button class="btn btn-outline-info" type="submit" name="button">Log in</button>
           </div>
       </form>
       <div class="border-top pt-3">
-        <small class="text-muted">Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a></small>
+        <small class="text-muted">Don't have an account? <a class="ml-2" href="{% url 'register' %}">Register</a></small>
       </div>
   </div>
 {% endblock content %}

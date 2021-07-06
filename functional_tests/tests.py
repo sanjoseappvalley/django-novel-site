@@ -1,14 +1,17 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-import time
+import time, os
 from novels.models import Novel
 from django.utils import timezone
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
         self.fno = Novel(novel_name="Legend of Chusen")
         self.fno.save()
         self.fno.chapter_set.create(chapter_name='Chapter 1: Qing Yun')
@@ -72,6 +75,6 @@ class NewVisitorTest(LiveServerTestCase):
         time.sleep(2)
         self.assertEqual(self.browser.find_element_by_class_name('alert').text, "Account created for bbb!")
         # continue
-        
+
         self.fail(msg='Finish the test!')
         # the page moves to chapter 2 and he continues reading

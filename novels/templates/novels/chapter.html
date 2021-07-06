@@ -29,20 +29,8 @@
       </div>
     </article>
     <br>
-    <h2>Leave your comment!</h2>
+
     <div class="comments_section">
-      {% if user.is_authenticated %}
-        <form method="POST">
-          {% csrf_token %}
-          <div class="form-group">
-            {{ comment_form.as_p }}
-            <button style="float:right;" class="btn btn-info" type="submit">Add comment</button>
-          </div>
-        </form>
-      {% else %}
-        <a class="btn btn-outline-info" href="#">Log in to add a comment</a><br>
-      {% endif %}
-      <br>
       {% if comments %}
       <strong class="text-secondary">{{ chapter.number_of_comments }} Comments</strong>
       <hr>
@@ -55,6 +43,19 @@
             {{ comment.body|linebreaks }}
           </div>
           {% endfor %}
+        {% endif %}
+
+        <h2>Leave your comment!</h2>
+        {% if user.is_authenticated %}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              {{ comment_form.as_p }}
+              <button style="float:right;" class="btn btn-info" type="submit">Add comment</button>
+            </div>
+          </form>
+        {% else %}
+          <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to add a comment</a><br>
         {% endif %}
     </div>
 {% endblock content %}

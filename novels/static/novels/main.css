@@ -46,7 +46,5 @@ a {
 }
 
 body.dark-mode-enabled{
-  background-color: #222;
-  color: #e6e6e6;
-  border-color: #e6e6e6;
+  background: black;
 }
