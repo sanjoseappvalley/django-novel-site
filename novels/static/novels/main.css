@@ -1,6 +1,9 @@
 h1 {
   text-align: center;
 }
+h3 {
+  color: #6A5ACD;
+}
 h4 {
   text-align: center;
 }
@@ -42,9 +45,11 @@ img {
     margin-left: 0.3125rem;
 }
 a {
-  color: #6A5ACD;
+  color: #6A5ACD; /* Slate blue */
+  /* color: #cd6a5a; /* Moderate red */ */
 }
 
 body.dark-mode-enabled{
   background: black;
+  color: #A9A9A9; /* light gray */
 }

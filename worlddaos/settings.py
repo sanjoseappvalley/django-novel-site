@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-d=8_nc_93=n!r%_#6%bfpqi*k!#lb6u9m5=lr1b1*c=_6va599
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 
 # Application definition
@@ -87,10 +87,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'worlddaos',
-        'USER': 'postgres',
+        'USER': 'nightbaron',
         'PASSWORD': 'nightbaron',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
