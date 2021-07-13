@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn server for DOMAIN
+
+[Service]
+Restart=on-failure
+User=nicky
+WorkingDirectory=/home/nicky/sites/DOMAIN
+EnvironmentFile=/home/nicky/sites/DOMAIN/.env
+
+ExecStart=/home/nicky/sites/DOMAIN/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/DOMAIN.socket \
+    worlddaos.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
