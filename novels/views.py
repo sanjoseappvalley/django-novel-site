@@ -29,3 +29,9 @@ def chapter_page(request, slug1, slug2):
     else:
         cf = CommentForm()
     return render(request, 'novels/chapter.html', {'novel': novel, 'chapter': chapter, 'nextchap': nextchap, 'prevchap': prevchap, 'comments': comments, 'comment_form': cf})
+
+def about(request):
+    return render(request, 'novels/about.html')
+
+def donations(request):
+    return render(request, 'novels/donations.html')
