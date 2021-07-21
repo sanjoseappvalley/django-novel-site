@@ -9,7 +9,7 @@ class RegisterViewTest(TestCase):
         password1 = 'aaaa1234'
         password2 = 'aaaa1234'
         response = self.client.post('/register/', data={'username': name, 'email': email, 'password1': password1, 'password2': password2})
-        self.assertRedirects(response, '/')
+        self.assertRedirects(response, '/login/')
 
     def test_success_register_message(self):
         name = 'aaaa'
