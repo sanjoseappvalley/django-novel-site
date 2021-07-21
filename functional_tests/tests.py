@@ -16,8 +16,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.fno.save()
         self.fno.chapter_set.create(chapter_name='Chapter 1: Ancient Tales')
         self.c2 = self.fno.chapter_set.create(chapter_name='Chapter 2: Heated Battles', content='chapter 2 story line')
-        self.sno = Novel(novel_name="Demons Among Gods")
-        self.sno.save()
+        
 
     def tearDown(self):
         self.browser.quit()
