@@ -12,12 +12,12 @@ class NewVisitorTest(StaticLiveServerTestCase):
         staging_server = os.environ.get('STAGING_SERVER')
         if staging_server:
             self.live_server_url = 'http://' + staging_server
-        # self.fno = Novel(novel_name="Legend of Chusen")
-        # self.fno.save()
-        # self.fno.chapter_set.create(chapter_name='Chapter 1: Qing Yun')
-        # self.c2 = self.fno.chapter_set.create(chapter_name='Chapter 2: Confuse', content='chapter 2 story line')
-        # self.sno = Novel(novel_name="Great Demon God")
-        # self.sno.save()
+        self.fno = Novel(novel_name="Legend of Chusen")
+        self.fno.save()
+        self.fno.chapter_set.create(chapter_name='Chapter 1: Qing Yun')
+        self.c2 = self.fno.chapter_set.create(chapter_name='Chapter 2: Confuse', content='chapter 2 story line')
+        self.sno = Novel(novel_name="Great Demon God")
+        self.sno.save()
 
     def tearDown(self):
         self.browser.quit()
