@@ -8,6 +8,7 @@ h4 {
   text-align: center;
 }
 body {
+    background: #D3D3D3;
     font-size: 1.125rem;
     display: flex;
     flex-direction: column;
