@@ -3,10 +3,12 @@ h1 {
 }
 h3 {
   color: #6A5ACD;
+  text-align: center;
 }
 h4 {
   text-align: center;
 }
+
 body {
     background: #D3D3D3;
     font-size: 1.125rem;
@@ -46,6 +48,7 @@ img {
     margin-left: 0.3125rem;
 }
 a {
+  /* color: rgb(255, 183, 0); */
   color: #6A5ACD; /* Slate blue */
   /* color: #cd6a5a; /* Moderate red */ */
 }

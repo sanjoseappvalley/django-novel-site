@@ -1,6 +1,40 @@
 {% extends "novels/base.html" %}
 {% block head %}
   <title>Immortal Mansion - Cultivation Light Novels</title>
+  <style>
+    .pageContent {
+      display: flex;
+      padding: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .novel {
+      font-size: 16px;
+      width: 230px;
+      height: 240px;
+      border: 1px solid rgb(255, 183, 0);
+      border-radius: 5px;
+      margin: 10px 8px;
+      padding: 30px;
+      text-align: center;
+    }
+    .pageContent > div:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+      transition: all 0.3s ease-in;
+    }
+    #thumbnail {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    a:hover {
+      color: red;
+    }
+    .author {
+      font-size: 0.8em;
+      opacity: 0.7;
+    }
+  </style>
+
 {% endblock head %}
 
 {% block content %}
@@ -9,11 +43,17 @@
     <h3>Cultivation Daos</h3>
     <br>
     {% if current_novel_list %}
-      <ul>
+      <div class="pageContent">
         {% for novel in current_novel_list %}
-          <li><a href="/{{ novel.slug }}" class="text-decoration-none">{{ novel.novel_name }}</a></li>
+            <div class="novel" id="thumbnail">
+              <a href="/{{ novel.slug }}" class="text-decoration-none">{{ novel.novel_name }}</a><hr>
+              <p>The Peak of Martial Arts</p><br>
+              <div class="author">
+                author: NB
+              </div>
+            </div>
         {% endfor %}
-      </ul>
+      </div>
     {% else %}
       <p>No novels are available. Please check back later.</p>
     {% endif %}
