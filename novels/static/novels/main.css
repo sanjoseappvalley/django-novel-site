@@ -1,0 +1,59 @@
+h1 {
+  text-align: center;
+}
+h3 {
+  color: #6A5ACD;
+  text-align: center;
+}
+h4 {
+  text-align: center;
+}
+
+body {
+    background: #D3D3D3;
+    font-size: 1.125rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 0 0.9375rem;
+}
+
+small {
+    font-style: italic;
+}
+article {
+    display: flex;
+    flex-direction: column;
+}
+img {
+    max-width: 100%;
+    display: block;
+    align-self: center;
+}
+.switch {
+    align-self: flex-end;
+    color: #6A5ACD;
+    /* margin: 0.9375rem; */
+}
+.inner-switch {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #555;
+    border-radius: 1.25rem;
+    width: 3.125rem;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.1875rem;
+    margin-left: 0.3125rem;
+}
+a {
+  /* color: rgb(255, 183, 0); */
+  color: #6A5ACD; /* Slate blue */
+  /* color: #cd6a5a; /* Moderate red */ */
+}
+
+body.dark-mode-enabled{
+  background: black;
+  color: #A9A9A9; /* light gray */
+}
